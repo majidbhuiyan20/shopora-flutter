@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:shopora_flutter/features/auth/sign_in/view/sign_in_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/routes/app_routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shopora',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0XFFFF7A1A)),
+        useMaterial3: true,
       ),
-      home: SignInScreen(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: Routes.splashRoute,
+      onGenerateRoute: RouteGenerator.getRoute,
     );
   }
 }
-
