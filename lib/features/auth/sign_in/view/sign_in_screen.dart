@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../widgets/auth_background.dart';
+import '../../widgets/custom_label.dart';
+import '../../widgets/custom_text_field.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -56,25 +58,16 @@ class _SignInScreenState extends State<SignInScreen> {
             const SizedBox(height: 40),
 
             // Email Field
-            _buildLabel("Email Address"),
+            CustomLabel(label: "Email Address"),
             const SizedBox(height: 8),
-            _buildTextField(
-              controller: _emailController,
-              hint: "Enter your email",
-              icon: Icons.email_outlined,
-            ),
+            CustomTextField(controller: _emailController, hint: "Enter your email", icon: Icons.email_outlined, isPassword: false,),
 
             const SizedBox(height: 20),
 
             // Password Field
-            _buildLabel("Password"),
+            CustomLabel(label: "Password"),
             const SizedBox(height: 8),
-            _buildTextField(
-              controller: _passwordController,
-              hint: "Enter your password",
-              icon: Icons.lock_outline,
-              isPassword: true,
-            ),
+            CustomTextField(controller: _passwordController, hint: "Enter your password", icon: Icons.lock_outline, isPassword: true),
 
             const SizedBox(height: 12),
             Align(
@@ -143,40 +136,8 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-
-  Widget _buildLabel(String label) {
-    return Text(
-      label,
-      style: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: AppColors.titleColor,
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hint,
-    required IconData icon,
-    bool isPassword = false,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade200),
-      ),
-      child: TextField(
-        controller: controller,
-        obscureText: isPassword,
-        decoration: InputDecoration(
-          hintText: hint,
-          prefixIcon: Icon(icon, color: AppColors.textColor),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        ),
-      ),
-    );
-  }
 }
+
+
+
+
