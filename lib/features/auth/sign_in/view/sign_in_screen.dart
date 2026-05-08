@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../widgets/auth_background.dart';
 import '../../widgets/custom_label.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../../widgets/primary_button.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -58,22 +60,32 @@ class _SignInScreenState extends State<SignInScreen> {
             const SizedBox(height: 40),
 
             // Email Field
-            CustomLabel(label: "Email Address"),
+            const CustomLabel(label: "Email Address"),
             const SizedBox(height: 8),
-            CustomTextField(controller: _emailController, hint: "Enter your email", icon: Icons.email_outlined, isPassword: false,),
+            CustomTextField(
+              controller: _emailController, 
+              hint: "Enter your email", 
+              icon: Icons.email_outlined, 
+              isPassword: false,
+            ),
 
             const SizedBox(height: 20),
 
             // Password Field
-            CustomLabel(label: "Password"),
+            const CustomLabel(label: "Password"),
             const SizedBox(height: 8),
-            CustomTextField(controller: _passwordController, hint: "Enter your password", icon: Icons.lock_outline, isPassword: true),
+            CustomTextField(
+              controller: _passwordController, 
+              hint: "Enter your password", 
+              icon: Icons.lock_outline, 
+              isPassword: true,
+            ),
 
             const SizedBox(height: 12),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, Routes.forgotPasswordRoute),
                 child: const Text(
                   "Forgot Password?",
                   style: TextStyle(
@@ -87,25 +99,11 @@ class _SignInScreenState extends State<SignInScreen> {
             const SizedBox(height: 32),
 
             // Sign In Button
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 2,
-                  shadowColor: AppColors.primaryColor.withOpacity(0.3),
-                ),
-                child: const Text(
-                  "Sign In",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
+            PrimaryButton(
+              text: "Sign In",
+              onPressed: () {
+                 Navigator.pushReplacementNamed(context, Routes.homeRoute);
+              },
             ),
 
             const SizedBox(height: 24),
@@ -119,7 +117,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   style: TextStyle(color: AppColors.textColor),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () => Navigator.pushNamed(context, Routes.registerRoute),
                   child: const Text(
                     "Sign Up",
                     style: TextStyle(
@@ -137,7 +135,3 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 }
-
-
-
-

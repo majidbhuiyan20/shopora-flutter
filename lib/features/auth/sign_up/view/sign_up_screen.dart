@@ -5,6 +5,7 @@ import '../../../../core/routes/app_routes.dart';
 import '../../widgets/auth_background.dart';
 import '../../widgets/custom_label.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../../widgets/primary_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -108,25 +109,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 32),
             
             // Sign Up Button
-            SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 2,
-                  shadowColor: AppColors.primaryColor.withOpacity(0.3),
-                ),
-                child: const Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
+            PrimaryButton(
+              text: "Sign Up",
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.otpRoute, arguments: false);
+              },
             ),
             
             const SizedBox(height: 24),

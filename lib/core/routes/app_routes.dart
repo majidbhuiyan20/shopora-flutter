@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../features/auth/forgot_password/view/forgot_password_screen.dart';
+import '../../features/auth/otp/view/otp_screen.dart';
+import '../../features/auth/reset_password/view/reset_password_screen.dart';
 import '../../features/auth/sign_in/view/sign_in_screen.dart';
 import '../../features/auth/sign_up/view/sign_up_screen.dart';
 import '../../features/onboarding/view/onboarding_screen.dart';
@@ -30,6 +32,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case Routes.forgotPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
+      case Routes.otpRoute:
+        final bool isFromForgotPass = routeSettings.arguments as bool? ?? false;
+        return MaterialPageRoute(
+          builder: (_) => OtpScreen(isFromForgotPass: isFromForgotPass),
+        );
+      case Routes.resetPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       default:
         return unDefineRoute();
     }

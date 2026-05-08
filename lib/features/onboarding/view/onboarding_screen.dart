@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/routes/app_routes.dart';
+import '../../widgets/primary_button.dart';
 import '../models/onboarding_model.dart';
 import '../providers/onboarding_provider.dart';
 import '../widgets/dot_indicator.dart';
-import '../widgets/onboarding_action_button.dart';
 import '../widgets/onboarding_content.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -118,8 +118,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   ),
                   const SizedBox(height: 48),
                   
-                  // Main Action Button
-                  OnboardingActionButton(
+                  // Main Action Button (Using global PrimaryButton)
+                  PrimaryButton(
                     text: currentPage == _onboardingData.length - 1 ? "Get Started" : "Continue",
                     onPressed: () => _onNextPressed(currentPage),
                   ),

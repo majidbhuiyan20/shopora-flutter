@@ -7,19 +7,21 @@ import '../../widgets/auth_background.dart';
 import '../../widgets/custom_label.dart';
 import '../../widgets/custom_text_field.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final _emailController = TextEditingController();
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -45,7 +47,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
             const SizedBox(height: 40),
             const Text(
-              "Forgot Password?",
+              "Reset Password",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -54,7 +56,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
             const SizedBox(height: 8),
             const Text(
-              "Don't worry! It happens. Please enter the address associated with your account.",
+              "Please enter your new password to secure your account.",
               style: TextStyle(
                 fontSize: 16,
                 color: AppColors.textColor,
@@ -63,24 +65,35 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
             const SizedBox(height: 40),
             
-            // Email Field
-            const CustomLabel(label: "Email Address"),
+            // Password Field
+            const CustomLabel(label: "New Password"),
             const SizedBox(height: 8),
             CustomTextField(
-              controller: _emailController,
-              hint: "Enter your email",
-              icon: Icons.email_outlined,
-              isPassword: false,
+              controller: _passwordController,
+              hint: "Enter new password",
+              icon: Icons.lock_outline,
+              isPassword: true,
+            ),
+            const SizedBox(height: 20),
+
+            // Confirm Password Field
+            const CustomLabel(label: "Confirm Password"),
+            const SizedBox(height: 8),
+            CustomTextField(
+              controller: _confirmPasswordController,
+              hint: "Repeat your password",
+              icon: Icons.lock_reset_outlined,
+              isPassword: true,
             ),
             
             const SizedBox(height: 40),
             
-            // Send OTP Button
+            // Reset Button
             PrimaryButton(
-              text: "Send OTP",
+              text: "Reset Password",
               onPressed: () {
-                // Navigate to OTP screen with flag set to true to go to Reset Password next
-                Navigator.pushNamed(context, Routes.otpRoute, arguments: true);
+                // Logic to reset password
+                Navigator.pushNamedAndRemoveUntil(context, Routes.loginRoute, (route) => false);
               },
             ),
           ],
